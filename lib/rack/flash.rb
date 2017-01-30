@@ -24,13 +24,13 @@ module Rack
       # Remove an entry from the session and return its value. Cache result in
       # the instance cache.
       def [](key)
-        key = key.to_sym
+        key = key.to_s
         cache[key] ||= values.delete(key)
       end
 
       # Store the entry in the session, updating the instance cache as well.
       def []=(key,val)
-        key = key.to_sym
+        key = key.to_s
         cache[key] = values[key] = val
       end
 
@@ -44,7 +44,7 @@ module Rack
       # Checks for the presence of a flash entry without retrieving or removing
       # it from the cache or store.
       def has?(key)
-        [cache, values].any? { |store| store.keys.include?(key.to_sym) }
+        [cache, values].any? { |store| store.keys.include?(key.to_s) }
       end
       alias_method :include?, :has?
 

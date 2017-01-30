@@ -1,5 +1,12 @@
-# Patch the Call to rack_builder
+# rack-flash4 - don't symbolize keys
 
+Original rack-flash as well as rack-flash3 forcibly changes the key names to
+symbols. Unfortunately this does not work if the session storage is backed by
+something that does not support symbols (i.e. Redis). rack-flash4 addresses
+this problem by converting the keys to strings, so you can use things like
+`flash['error']` and it will behave as expected.
+
+# Patch the Call to rack_builder
 
 Treeder forked the original Rack::Flash and patched its issues, see 
 https://github.com/treeder/rack-flash
